@@ -1,16 +1,14 @@
-# -*- coding: utf-8 -*-
 """
-Created on Mon Sep 21 19:43:08 2020
 
 @author: Kwame Ampadu-Boateng
+
 """
 import requests
 import random
 import time
 
+
 # This class is used in order to make a request using my Bearer Token
-
-
 class BearerAuth(requests.auth.AuthBase):
     def __init__(self, token):
         self.token = token
@@ -18,6 +16,7 @@ class BearerAuth(requests.auth.AuthBase):
     def __call__(self, r):
         r.headers["authorization"] = "Bearer " + self.token
         return r
+
 
 # This method return the json object of the last 3200 tweets of a user
 def getJson(user, count=3200):
@@ -39,6 +38,7 @@ def filterJson(json):
         if "@" not in json[i]['text'] and "https" not in json[i]['text']:
             realResponse.append(json[i]['text'])
     return realResponse
+
 
 # This method gets a random tweet from the array of acceptable tweets
 def getTweet(tweetList):
